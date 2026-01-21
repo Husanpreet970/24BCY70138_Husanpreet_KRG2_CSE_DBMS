@@ -1,0 +1,47 @@
+CREATE TABLE Students1 (
+    id NUMERIC PRIMARY KEY,
+    name VARCHAR(50),
+    city VARCHAR(30),
+    marks NUMERIC(10,0)
+);
+INSERT INTO Students1 VALUES (1, 'Aman', 'Mohali', 85);
+INSERT INTO Students1 VALUES (2, 'Rohit', 'Mohali', 78);
+INSERT INTO Students1 VALUES (3, 'Neha', 'Mohali', 92);
+INSERT INTO Students1 VALUES (4, 'Simran', 'Amritsar', 88);
+INSERT INTO Students1 VALUES (6, 'Karan', 'Amritsar', 75);
+SELECT * FROM Students1;
+
+SELECT city,count(*) as count_of_students
+from Students1
+group by city;
+
+SELECT city,count(id) as count_of_students
+from Students1
+group by city;
+
+SELECT city,COUNT(ID) as count_of_students
+from Students1
+group by city
+order by count_of_students ASC;
+
+SELECT city, COUNT(*) as count_of_students 
+FROM Students1
+GROUP BY city
+ORDER BY COUNT(*) ASC;
+
+SELECT city,COUNT(ID) as count_of_students
+FROM Students1
+GROUP BY city
+HAVING COUNT(ID)>=3;
+
+SELECT city,AVG(MARKS)::NUMERIC(10,2) as average_marks
+FROM Students1
+Group BY city;
+
+SELECT city, SUM(marks) FROM students GROUP BY city;
+
+SELECT city, MAX(marks) FROM students GROUP BY city;
+
+SELECT city, MIN(marks) FROM students GROUP BY city;
+
+

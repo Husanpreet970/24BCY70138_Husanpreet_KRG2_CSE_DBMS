@@ -35,11 +35,12 @@ To design and implement a sample database system using SQL commands to perform f
 ## Step 1: Table Creation
 
 ```sql
-CREATE TABLE Students1 (
-    id NUMERIC PRIMARY KEY,
-    name VARCHAR(50),
-    city VARCHAR(30),
-    marks NUMERIC(10,0)
+CREATE TABLE employee1(
+	emp_id NUMERIC PRIMARY KEY,
+	emp_name VARCHAR(50),
+	department VARCHAR(50),
+	salary NUMERIC(10,2),
+	joining_date DATE
 );
 
 ```
@@ -49,34 +50,37 @@ CREATE TABLE Students1 (
 ## Step 1.1: Insert Sample Data
 
 ```sql
-INSERT INTO Students1 VALUES (1, 'Aman', 'Mohali', 85);
-INSERT INTO Students1 VALUES (2, 'Rohit', 'Mohali', 78);
-INSERT INTO Students1 VALUES (3, 'Neha', 'Mohali', 92);
-INSERT INTO Students1 VALUES (4, 'Simran', 'Amritsar', 88);
-INSERT INTO Students1 VALUES (6, 'Karan', 'Amritsar', 75);
-SELECT * FROM Students1;
+INSERT INTO employee1 VALUES (101, 'Amit', 'IT', 19000, '2020-02-12');
+INSERT INTO employee1 VALUES (102, 'Priya', 'HR', 22000, '2019-03-10');
+INSERT INTO employee1 VALUES (103, 'Rahul', 'Sales', 35000, '2021-07-18');
+INSERT INTO employee1 VALUES (104, 'Neha', 'IT', 55000, '2018-09-22');
+INSERT INTO employee1 VALUES (105, 'Rohan', 'Finance', 32000, '2022-01-05');
+INSERT INTO employee1 VALUES (106, 'Sara', 'Sales', 13000, '2020-12-03');
+INSERT INTO employee1 VALUES (107, 'Vikram', 'HR', 12000, '2017-04-11');
+SELECT * FROM employee1;
 
 ```
 ## Step 2: Filtering Data
 
 ```sql
-SELECT city,count(*) as count_of_students
-from Students1
-group by city;
+SELECT department, AVG(salary) AS avg_salary
+FROM employee1
+GROUP BY department;
 
 ```
 
 ```sql
-SELECT city,count(id) as count_of_students
-from Students1
-group by city;
+SELECT department, AVG(salary) AS avg_salary
+FROM employee1
+WHERE salary > 20000
+GROUP BY department;
 
 ```
 ```sql
-SELECT city,COUNT(ID) as count_of_students
-FROM Students1
-GROUP BY city
-HAVING COUNT(ID)>=3;
+SELECT department, AVG(salary) AS avg_salary
+FROM employee1
+GROUP BY department
+HAVING AVG(salary) > 30000;
 
 
 ```
@@ -85,32 +89,14 @@ HAVING COUNT(ID)>=3;
 ## Step 3: Sorting Data
 
 ```sql
-SELECT city, COUNT(*) as count_of_students 
-FROM Students1
-GROUP BY city
-ORDER BY COUNT(*) ASC;
+SELECT department, AVG(salary) AS avg_salary
+FROM employee1
+WHERE salary > 20000
+GROUP BY department
+HAVING AVG(salary) > 30000
+ORDER BY avg_salary DESC;
 ```
 
----
-
-## Step 4: Grouping and Aggregation
-
-```sql
-SELECT city,AVG(MARKS)::NUMERIC(10,2) as average_marks
-FROM Students1
-Group BY city;
-
-```
-
-```sql
-SELECT city, SUM(marks) FROM Students1 GROUP BY city;
-```
-```sql
-SELECT city, MAX(marks) FROM Students1 GROUP BY city;
-```
-```sql
-SELECT city, MIN(marks) FROM Students1 GROUP BY city;
-```
 ---
 
 ## Learning Outcomes

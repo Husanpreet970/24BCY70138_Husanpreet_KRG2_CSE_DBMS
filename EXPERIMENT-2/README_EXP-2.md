@@ -60,7 +60,7 @@ INSERT INTO employee1 VALUES (107, 'Vikram', 'HR', 12000, '2017-04-11');
 SELECT * FROM employee1;
 
 ```
-## Step 2: Filtering Data
+## Step 2: Filtering Data(Using Group By)
 
 ```sql
 SELECT department, AVG(salary) AS avg_salary
@@ -76,6 +76,8 @@ WHERE salary > 20000
 GROUP BY department;
 
 ```
+## Step 3: Filtering Data(Using Having)
+
 ```sql
 SELECT department, AVG(salary) AS avg_salary
 FROM employee1
@@ -86,7 +88,7 @@ HAVING AVG(salary) > 30000;
 ```
 ---
 
-## Step 3: Sorting Data
+## Step 4: Sorting Data(Order By)
 
 ```sql
 SELECT department, AVG(salary) AS avg_salary

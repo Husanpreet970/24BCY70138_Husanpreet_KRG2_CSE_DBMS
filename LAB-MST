@@ -1,0 +1,22 @@
+create table emp_viewtable
+(
+emp_id int primary key,
+name varchar(50),
+salary int
+);
+
+insert into emp_viewtable(emp_id,name,salary) values
+(1,'Asha',50000),
+(2,'Rohan',70000),
+(3,'Meera',40000),
+(4,'Kabir',55000),
+(5,'Isha',90000);
+
+select * from emp_viewtable;
+
+create view HIghSalaryEmployees as
+select emp_id,name,salary
+from emp_viewtable
+where salary>50000;
+
+select * from HighSalaryEmployees;

@@ -1,27 +1,28 @@
-# Experiment 08 – Design and Implementation of Procedures and Functions
+# Experiment 08 – Design of a Parameterized PL/SQL Stored Procedure for Employee Count by Gender (CData, Toddle)
 
 ---
 
 ## AIM
 
-To design and implement PL/pgSQL procedures and functions and to analyze their usage for performing database operations efficiently.
+To design and implement a stored procedure that accepts gender as an input parameter and returns the total number of employees based on the given gender, thereby demonstrating procedural programming and parameterized logic in PL/SQL.
+
 ---
 
 ## Software Requirements
 
-- Database Management System: PostgreSQL
-- Database Administration Tool: pgAdmin / psql
+- Database Management System:
+-- Oracle Database Express Edition (Oracle XE)
+-- PostgreSQL Database
 
+- Database Administration Tool / Client Tool:
+-- Oracle SQL Developer (for Oracle XE)
+-- pgAdmin (for PostgreSQL)
+  
 ---
 
 ## Objective
 
-- Create tables and insert data
-- Implement stored procedures
-- Use IN, OUT, and INOUT parameters
-- Create scalar functions
-- Create table-returning functions
-- Execute and analyze outputs
+To write and execute a PL/SQL stored procedure that dynamically accepts gender as an argument and computes the employee count corresponding to the given gender.
 
 ---
 
@@ -30,6 +31,13 @@ To design and implement PL/pgSQL procedures and functions and to analyze their u
 In database systems, reusable and efficient logic is required to handle data operations. Procedures and functions help in modular programming, reduce redundancy, and improve performance and maintainability.
 
 ---
+
+## Experiment Steps
+
+Design a stored procedure that:
+- Accepts gender as an input parameter
+- Counts the total number of employees matching the given gender
+- Returns the count as an output parameter
 
 ## Table Structure
 
@@ -107,93 +115,16 @@ END;
 $$;
 ---
 ```
-
-## Problem 2: Scalar Function
-
-### Description
-
-Create a function to calculate bonus (10% of salary).
-
-### Program
-
-```sql
-CREATE OR REPLACE FUNCTION get_bonus(p_emp_id INT)
-RETURNS NUMERIC AS $$
-BEGIN
-    RETURN (
-        SELECT salary * 0.10
-        FROM employees
-        WHERE emp_id = p_emp_id
-    );
-END;
-$$ LANGUAGE plpgsql;
-```
-
-```sql
-SELECT get_bonus(1);
----
-```
-
-## Problem 3: Table Returning Function
-
-### Description
-
-Create a function to return employee details.
-
-### Program
-
-```sql
-CREATE OR REPLACE FUNCTION get_employees()
-RETURNS TABLE(
-    id INT,
-    name VARCHAR(100)
-) AS $$
-BEGIN
-    RETURN QUERY
-    SELECT emp_id, emp_name FROM employees;
-END;
-$$ LANGUAGE plpgsql;
-```
-
-```sql
-DO $$
-DECLARE
-    rec RECORD;
-BEGIN
-    FOR rec IN SELECT * FROM get_employees()
-    LOOP
-        RAISE NOTICE 'id: %, name: %', rec.id, rec.name;
-    END LOOP;
-END;
-$$;
----
-```
-
-## Performance Analysis
-
-### Procedure
-
-```sql
-CALL COUNT_EMP(...);
-```
-
-### Function
-
-```sql
-SELECT get_bonus(1);
-SELECT * FROM get_employees();
-```
 ---
 
 ## Learning Outcomes
 
-1. Understood procedures and parameter modes (IN, OUT, INOUT)
-2. Learned how to create and execute functions
-3. Implemented scalar and table-returning functions
-4. Gained knowledge of PL/pgSQL procedural programming
-5. Applied concepts useful in real-world database applications
----
+1. Understand the structure and components of a stored procedure
+2. Implement IN and OUT parameters in PL/SQL procedures
+3. Pass dynamic input values to stored procedures
+4. Apply aggregate functions (like COUNT) within procedures
+5. Develop reusable database logic for real-world business scenarios used in companies like CData and Toddle
 
 ## Conclusion
 
-This experiment demonstrated the implementation of procedures and functions in PostgreSQL. Procedures are useful for performing operations with multiple outputs, while functions are efficient for returning computed values and datasets, improving modularity and performance in database systems.
+The experiment successfully demonstrated the design and implementation of a parameterized PL/SQL stored procedure to calculate employee count based on gender. By using IN and OUT parameters along with aggregate functions, dynamic and reusable database logic was achieved. This method improves efficiency in data retrieval and supports real-world organizational requirements such as workforce analysis and reporting.

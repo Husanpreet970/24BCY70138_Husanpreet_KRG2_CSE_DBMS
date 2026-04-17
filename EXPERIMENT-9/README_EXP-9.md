@@ -88,7 +88,6 @@ BEGIN
     RETURN emp_cursor;
 END;
 $$ LANGUAGE plpgsql;
----
 ```
 
 ```sql 
@@ -105,7 +104,6 @@ BEGIN
     RETURN emp_cursor;
 END;
 $$ LANGUAGE plpgsql;
----
 ```
 ### Execution
 
@@ -118,7 +116,6 @@ SELECT emp_package.get_all_employees();
 FETCH ALL IN "emp_cur";
 
 COMMIT;
----
 ```
 ```sql
 Get Employees by Department
@@ -129,7 +126,6 @@ SELECT emp_package.get_employee_by_dept(10);
 FETCH ALL IN "dept_cur";
 
 COMMIT;
----
 ```
 
 ## Learning Outcomes
